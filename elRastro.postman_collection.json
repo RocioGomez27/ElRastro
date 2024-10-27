@@ -1,0 +1,789 @@
+{
+	"info": {
+		"_postman_id": "41704216-90ba-4a34-9740-ea49afd80d13",
+		"name": "elRastro",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30798279"
+	},
+	"item": [
+		{
+			"name": "Productos",
+			"item": [
+				{
+					"name": "Huella Carbono",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"ubicacionOrigen\" : \"Calle Jano, Malaga\",\r\n    \"ubicacionDestino\" : \"Calle Cervantes, El ejido\",\r\n    \"peso\" : 400,\r\n    \"transporte\" :\"plane\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/huellaCarbono",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"huellaCarbono"
+							]
+						},
+						"description": "Devuelve los gramos de carbono necesarios para el envío de un paquete, dado el peso, el método de transporte, la ubicación origen y la ubicación destino."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar todos los productos",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/productos/",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								""
+							]
+						},
+						"description": "Devuelve todos los productos contenidos en la base de datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear un producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"Nuevo producto\",\r\n    \"fechaCierre\": \"2024-01-09\",\r\n    \"precioInicial\":50,\r\n    \"titulo\": \"Producto nuevo\",\r\n    \"ubicacion\": \"Avenida Andalucia, Malaga\" ,\r\n    \"vendedor\": \"653befbcd16378ca5b1c98ab\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								""
+							]
+						},
+						"description": "Crea un producto apartir de los campos completados por el usuario: descripcion, fechaCierre, precioFinal, titulo y ubicacion. También se podría añadir una foto para las pujas sobre el producto, en su defecto se creará a null, al igual que los campos \"comentarios\", \"historialPujas\" y \"comprador\". El campo \"vendedor\" se creará como falso inicialmente."
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un producto",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"descripcion\": \"Cargador nuevo sin abrir, incluye cable en mal estado\",\r\n    \"precioFinal\":35,\r\n    \"titulo\": \"Cargador de iphone\",\r\n    \"ubicacion\": \"Avenida plutarco, Málaga\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/653bee6ad16378ca5b1c98a3",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"653bee6ad16378ca5b1c98a3"
+							]
+						},
+						"description": "Permite editar los campos de un producto indicado a través de la id."
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un producto",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/6550b3bf7e1d09426fec003e",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6550b3bf7e1d09426fec003e"
+							]
+						},
+						"description": "Permite borrar un producto permanentemente a través de su id."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar productos de un usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"_id\": \"653befbcd16378ca5b1c98ab\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/pujados",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"pujados"
+							]
+						},
+						"description": "Muestra todos los productos ofertados por un usuario a través de la id de este."
+					},
+					"response": []
+				},
+				{
+					"name": "Subir una foto del producto",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "foto",
+									"type": "file",
+									"src": []
+								}
+							]
+						},
+						"url": {
+							"raw": "localhost:3001/productos/subirFoto",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"subirFoto"
+							]
+						},
+						"description": "Sube una foto introducida a través del body (form-data) a cloudinary y devuelve su enlace correspondiente. Es necesario introducir el archivo de la foto."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar pujas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/pujas",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"pujas"
+							]
+						},
+						"description": "Devuelve todas las pujas contenidas en la base de datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Añadir puja",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"precio\": 1666,\r\n    \"usuario\": \"653befbcd16378ca5b1c98ab\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/crearPuja",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"crearPuja"
+							]
+						},
+						"description": "Crea una puja a partir del campo completado por el usuario: \"precio\". La id del producto pujado y el usuario que realizar la puja se añadirán automaticamente."
+					},
+					"response": []
+				},
+				{
+					"name": "Editar una puja",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"precio\": 1234\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/editPuja/6572e69c4f2b3d1fec83ec54",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"editPuja",
+								"6572e69c4f2b3d1fec83ec54"
+							]
+						},
+						"description": "Permite editar el campo de \"precio\" de una puja a través de su id."
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar una puja",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/deletePuja/6572e54325254d32ebcaec7f",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"deletePuja",
+								"6572e54325254d32ebcaec7f"
+							]
+						},
+						"description": "Permite borrar una puja permanentemente a través de su id."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtro pujas por precio (<)",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"precio\": 1233\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/pujasPrecio",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"pujasPrecio"
+							]
+						},
+						"description": "Devuelve todas las pujas con un precio menor o igual al especificado."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar comentarios",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/comentarios",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"comentarios"
+							]
+						},
+						"description": "Devuelve todas las pujas contenidas en la base de datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Añadir comentario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"usuario\": \"653befbcd16378ca5b1c98ab\",\r\n    \"texto\": \"Quillo esto está roto fijo\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/crearComentario",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"crearComentario"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar comentario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"texto\": \"Está en buen estado?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/editComentario/6572f47934401b281716a640",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"editComentario",
+								"6572f47934401b281716a640"
+							]
+						},
+						"description": "Devuelve todas las pujas contenidas en la base de datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar comentario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"texto\": \"Está en buen estado?\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/deleteComentario/6572f5aa7f9f9d0c2a324faf",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"deleteComentario",
+								"6572f5aa7f9f9d0c2a324faf"
+							]
+						},
+						"description": "Devuelve todas las pujas contenidas en la base de datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar ubicación",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3001/productos/6572e18917be2043ef430477/ubicacion",
+							"host": [
+								"localhost"
+							],
+							"port": "3001",
+							"path": [
+								"productos",
+								"6572e18917be2043ef430477",
+								"ubicacion"
+							]
+						},
+						"description": "Devuelve todos los productos contenidos en la base de datos"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Usuarios",
+			"item": [
+				{
+					"name": "Mostrar todos los usuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3003/usuarios",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios"
+							]
+						},
+						"description": "Devuelve todos los usuarios contenidos en la base de datos"
+					},
+					"response": []
+				},
+				{
+					"name": "Crear Usuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contacto\": \"76723\",\r\n    \"ubicacion\": \"Calle pamplona\",\r\n    \"username\": \"martagonz\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3003/usuarios/",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios",
+								""
+							]
+						},
+						"description": "Crea un usuario a partir de los campos \"contacto\", \"ubicacion\" y \"username\", el cual debe ser único en la base de datos. La valoración media inicial se creará como 0."
+					},
+					"response": []
+				},
+				{
+					"name": "Editar un usuario",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"contacto\": \"694527911\",\r\n    \"ubicacion\": \"Avenida de las Palomsa\",\r\n    \"username\": \"Juan Pedro\",\r\n    \"valoracionMedia\": 2\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3003/usuarios/654627941d42bf1dd6d4034f",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios",
+								"654627941d42bf1dd6d4034f"
+							]
+						},
+						"description": "Permite editar los campos de un usuario indicado a través de la id."
+					},
+					"response": []
+				},
+				{
+					"name": "Borrar un usuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3003/usuarios/65462840c0bb94e4d682a686",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios",
+								"65462840c0bb94e4d682a686"
+							]
+						},
+						"description": "Permite borrar un usuario permanentemente a través de su id."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtro por username",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"juanPedro\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3003/usuarios/username",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios",
+								"username"
+							]
+						},
+						"description": "Devuelve todos los usuarios que contienen la cadena de carácteres especificada dentro de su username."
+					},
+					"response": []
+				},
+				{
+					"name": "Filtro por valoración (>)",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"valoracionMedia\": 5\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3003/usuarios/valoracion",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios",
+								"valoracion"
+							]
+						},
+						"description": "Devuelve todos los usuarios con una valoración media mayor o igual a la indicada."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar ubicación",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3003/usuarios/ubi/653befbcd16378ca5b1c98ab",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios",
+								"ubi",
+								"653befbcd16378ca5b1c98ab"
+							]
+						},
+						"description": "Muestra la latitud y longitud de la ubicación de un usuario indicado a través de su id"
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar compradores",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"Iker G\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3003/usuarios/compradores",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios",
+								"compradores"
+							]
+						},
+						"description": "Devuelve la lista de todos los usuarios que han comprado algún producto ofertado por el usuario indicado a través de su \"username\"."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar productos pujados por un usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3003/usuarios/653befbcd16378ca5b1c98ab/productosPujados",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios",
+								"653befbcd16378ca5b1c98ab",
+								"productosPujados"
+							]
+						},
+						"description": "Devuelve la lista de productos en las que un usuario ha pujado, a través de la id del usuario."
+					},
+					"response": []
+				},
+				{
+					"name": "Mostrar pujas de un usuario",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3003/usuarios/653befbcd16378ca5b1c98ab/pujas",
+							"host": [
+								"localhost"
+							],
+							"port": "3003",
+							"path": [
+								"usuarios",
+								"653befbcd16378ca5b1c98ab",
+								"pujas"
+							]
+						},
+						"description": "Con la id de un usuario, devuelve todas las pujas realizadas por el usuario."
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
